@@ -1,27 +1,28 @@
 'use client';
 import Link from 'next/link';
 import { useState } from 'react';
-import { ChevronRight, Zap, Target, FileText, Shield, ArrowRight, Menu, X, Check } from 'lucide-react';
+import { ChevronRight, Zap, Target, FileText, Shield, ArrowRight, Menu, X, Check, Mail } from 'lucide-react';
 
 export default function Home() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
-        <div className="min-h-screen bg-[#020617] text-white overflow-hidden relative">
+        <div className="min-h-screen bg-[#020617] text-white overflow-clip relative">
             {/* Background elements */}
             <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-600/20 blur-[120px] pointer-events-none" />
             <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-emerald-600/10 blur-[120px] pointer-events-none" />
 
             {/* Navbar */}
-            <nav className="container mx-auto px-6 py-6 flex justify-between items-center relative z-50">
-                <div className="flex items-center gap-2">
+            <header className="sticky top-0 z-50 w-full bg-[#020617]/80 backdrop-blur-md border-b border-slate-800/50">
+                <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
+                <Link href="/" className="flex items-center gap-2">
                     <div className="bg-indigo-600 p-2 rounded-xl">
                         <FileText className="w-6 h-6 text-white" />
                     </div>
                     <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">
                         ResumeBoost
                     </span>
-                </div>
+                </Link>
                 
                 {/* Desktop Nav */}
                 <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
@@ -46,7 +47,8 @@ export default function Home() {
                 >
                     {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                 </button>
-            </nav>
+                </nav>
+            </header>
 
             {/* Mobile Nav Overlay */}
             {mobileMenuOpen && (
@@ -229,20 +231,69 @@ export default function Home() {
             </main>
 
             {/* Footer */}
-            <footer className="border-t border-slate-800 bg-[#020617] relative z-10">
-                <div className="container mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <div className="flex items-center gap-2">
-                        <div className="bg-indigo-600 p-1.5 rounded-lg">
-                            <FileText className="w-5 h-5 text-white" />
+            <footer className="border-t border-slate-800 bg-[#020617] relative z-10 pt-16 pb-8">
+                <div className="container mx-auto px-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+                        <div className="lg:col-span-2">
+                            <Link href="/" className="flex items-center gap-2 mb-6 w-fit">
+                                <div className="bg-indigo-600 p-2 rounded-xl">
+                                    <FileText className="w-6 h-6 text-white" />
+                                </div>
+                                <span className="text-2xl font-bold text-slate-200">ResumeBoost</span>
+                            </Link>
+                            <p className="text-slate-400 text-sm leading-relaxed max-w-sm mb-8">
+                                Empowering job seekers with AI-driven resume optimization. Beat the applicant tracking systems and land your dream job faster.
+                            </p>
+                            <div className="flex gap-4 text-slate-500">
+                                <a href="#" className="hover:text-indigo-400 transition-colors p-2 bg-slate-900/50 rounded-lg border border-slate-800">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+                                </a>
+                                <a href="#" className="hover:text-indigo-400 transition-colors p-2 bg-slate-900/50 rounded-lg border border-slate-800">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                </a>
+                                <a href="#" className="hover:text-indigo-400 transition-colors p-2 bg-slate-900/50 rounded-lg border border-slate-800">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                </a>
+                            </div>
                         </div>
-                        <span className="text-xl font-bold text-slate-200">ResumeBoost</span>
+
+                        <div>
+                            <h4 className="text-white font-semibold mb-6">Product</h4>
+                            <ul className="space-y-4 text-sm text-slate-400">
+                                <li><Link href="#features" className="hover:text-white transition-colors">Features</Link></li>
+                                <li><Link href="#how-it-works" className="hover:text-white transition-colors">How it works</Link></li>
+                                <li><Link href="#pricing" className="hover:text-white transition-colors">Pricing</Link></li>
+                                <li><Link href="/dashboard/upload" className="hover:text-white transition-colors">Scan Resume</Link></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 className="text-white font-semibold mb-6">Resources</h4>
+                            <ul className="space-y-4 text-sm text-slate-400">
+                                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
+                                <li><a href="#" className="hover:text-white transition-colors">Resume Templates</a></li>
+                                <li><a href="#" className="hover:text-white transition-colors">Career Advice</a></li>
+                                <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 className="text-white font-semibold mb-6">Legal</h4>
+                            <ul className="space-y-4 text-sm text-slate-400">
+                                <li><Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
+                                <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+                                <li><a href="#" className="hover:text-white transition-colors flex items-center gap-2"><Mail className="w-4 h-4"/> Contact Us</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div className="flex gap-6 text-sm text-slate-500">
-                        <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-                        <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-                    </div>
-                    <div className="text-sm text-slate-500">
-                        &copy; {new Date().getFullYear()} ResumeBoost. All rights reserved.
+
+                    <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                        <div className="text-sm text-slate-500">
+                            &copy; {new Date().getFullYear()} ResumeBoost. All rights reserved.
+                        </div>
+                        <div className="text-sm text-slate-600">
+                            Made with ♥ for job seekers everywhere.
+                        </div>
                     </div>
                 </div>
             </footer>
