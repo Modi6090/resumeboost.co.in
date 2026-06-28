@@ -44,7 +44,12 @@ export default function LoginPage() {
                 });
                 
                 if (error) throw error;
-                setMessage('Success! Please check your email to verify your account.');
+                
+                if (data?.session) {
+                    setMessage('Account created! Logging you in...');
+                } else {
+                    setMessage('Success! Please check your email to verify your account.');
+                }
             } else {
                 const { data, error } = await supabase.auth.signInWithPassword({
                     email,
