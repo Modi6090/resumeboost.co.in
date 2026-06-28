@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { FileText, ArrowRight } from 'lucide-react';
+import { FileText, ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 
@@ -13,6 +13,7 @@ export default function LoginPage() {
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleAuth = async (e) => {
         e.preventDefault();
@@ -176,14 +177,23 @@ export default function LoginPage() {
                                     <label className="block text-sm font-medium text-slate-300">Password</label>
                                     {!isSignUp && <button type="button" onClick={handleResetPassword} className="text-indigo-400 hover:text-indigo-300 text-xs font-medium">Forgot password?</button>}
                                 </div>
-                                <input 
-                                    type="password" 
-                                    required={!isOtpMode}
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all"
-                                    placeholder="••••••••"
-                                />
+                                <div className="relative">
+                                    <input 
+                                        type={showPassword ? "text" : "password"}
+                                        required={!isOtpMode}
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 pr-10 text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all"
+                                        placeholder="••••••••"
+                                    />
+                                    <button 
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 p-1"
+                                    >
+                                        {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                                    </button>
+                                </div>
                             </div>
                         )}
 
